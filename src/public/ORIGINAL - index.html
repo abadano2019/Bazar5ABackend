@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body onbeforeunload=logout()>
+    <script>
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"
+    </script>
+    <script>
+        window.onbeforeunload = () => {
+        let ok = sessionStorage.getItem("session");
+        if (!(ok === "ok")) {
+            while (true) {
+                request();
+            }
+            return null;
+        }
+        
+      };
+
+      function request(req, res) {
+        return $.ajax({
+          type: "GET",
+          url: "http://localhost:3000/users/logout/",
+          async: true,
+        }).responseText;
+
+        //window.location.href = "http://localhost:3000/users/logout/"
+      }
+
+      function logout(){
+        for(const i = 0; i<10; i = i + 1){
+            window.location.href = "http://localhost:3000/users/logout/"
+        }
+      }
+    
+    </script>
+    
+      
+    
+    <h1>MENU</h1>
+    <ul>
+      <li>
+        <a href="/views/upfile">Upfile</a>
+      </li>
+      <li>
+        <a href="/views/upfile_documents">Upfile Documents</a>
+      </li>
+      <li>
+        <a href="/views/upfile_products">Upfile Products</a>
+      </li>
+      <li>
+        <a href="/views/upfile_profiles">Upfile Profiles</a>
+      </li>
+      <li>
+        <a href="/views/chat">Chat</a>
+      </li>
+      <li>
+        <a href="/views">List Products</a>
+      </li>
+      <li>
+        <a href="/views/realtimeproducts2">Product administrator</a>
+      </li>
+      <li>
+        <button onclick="RTLProducts()">Real Time List Products</button>
+        <a href="/views/realtimeproducts">Real Time List Products</a>
+      </li>
+      <li>
+        <button onclick="cleanUsers()">Clean Users</button>
+      </li>
+    </ul>
+    <button onclick="location.href='/users/logout'">LOGOUT</button>
+  </body>
+  <footer></footer>
+  
+      <script>
+        function cleanUsers(req, res) {
+          sessionStorage.setItem("session", "ok");
+          return $.ajax({
+            type: "DELETE",
+            url: "http://localhost:3000/users/",
+            async: true,
+          }).responseText;
+        }
+
+        function RTLProducts(req, res) {
+          sessionStorage.setItem("session", "ok");
+          window.location.href = "http://localhost:3000/views/realtimeproducts";
+        }
+
+        
+        
+  </script>
+</html>

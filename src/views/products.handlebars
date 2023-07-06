@@ -1,0 +1,175 @@
+
+<!--<button onclick="{{productsPaginate.productsPag.hasNextPage}} ? location.href='/views/products?page={{productsPaginate.productsPag.nextPage}}' : location.href='/views/products'">Pag.siguiente</button>-->
+<button onclick="nextPage(`{{productsPaginate.productsPag.hasNextPage}}`, `{{productsPaginate.productsPag.nextPage}}`)">Next Page</button>
+<!--<button onclick="{{productsPaginate.productsPag.hasPrevPage}} ? location.href='/views/products?page={{productsPaginate.productsPag.prevPage}}' : location.href='/views/products'">Pag.anterior</button>-->
+<button onclick="prevPage(`{{productsPaginate.productsPag.hasPrevPage}}`, `{{productsPaginate.productsPag.prevPage}}`)">Prev Page</button>
+
+
+<button onclick="location.href='/users/logout'">LOGOUT</button>
+<!--<form method="post" action="http://localhost:3000/api/carts/purchase">
+    <button class = "btnPurchase">COMPRAR</button>
+</form>-->
+<br/><br/>
+<!--<button onclick = "location.href=`http://localhost:3000/checkout.html`">Pay whith Stripe</button>-->
+<button onclick = "viewCartItems()">Cart Items</button>
+<button onclick = "viewChat()">Chat</button>
+<br/><br/>
+<br/><br/>
+<button onclick="location.href='/views/upfile_documents'">UPLOAD DOCUMENTS</button>
+<button onclick="location.href='http://localhost:3000/users/premium/{{productsPaginate.email}}'">MODIFY ROLE</button>
+
+<!--<button onclick="location.href=''">COMPRAR</button>-->
+
+<!--<h2>¡¡¡¡¡¡Bienvendio {{productsPaginate.user}}!!!!!!!!!!</h2>-->
+<h2>¡¡¡¡¡¡Bienvendio {{productsPaginate.user}}!!!!!!!!!!</h2>
+<h3>Lista de productos ingresados:</h3>
+
+<p id="dataRender"></p>
+
+
+<div class = "container">
+    {{#each productsPaginate.productsPag.payload}}
+        <div class = "card">
+            <div class = "title">
+                <h3> TITLE: {{title}}</h3>
+                <h3> Cod.: {{id}} </h3>
+            </div>
+            <div class = "detalle">
+                <p>PRICE: {{price}} </p>
+                <p>ESTADO: {{status}} </p>
+                <p>CODIGO: {{code}} </p>
+                <p>STOCK:{{stock}} </p>
+                <p>CATEGORIA:{{category}}</p>
+                <p>DESCRIPTION: {{description}}</p>
+            </div>
+            <!--<form method="post" action="http://localhost:3000/api/carts/addToCart/product/{{id}}">
+                <button class = "btnAddCart">Add to Cart</button>
+            </form>-->
+            <button onclick="addProd(`{{id}}`)"> add product </button>
+            
+        </div>
+    {{/each}}
+</div>
+
+
+
+<script src="/socket.io/socket.io.js"></script>
+
+<script>
+    const socketClient = io()
+    
+    const dataRenderProducts = document.getElementById('dataRednder')
+
+    socketClient.on("productoAgregado",(products)=>{
+        try{
+            console.log("Se Agregó un producto")
+            //console.log(products.products)
+            window.location.reload()
+        }catch(error){
+            console.log(error)
+        }
+    })
+
+    socketClient.on("productoEliminado",(products)=>{
+        try{
+            console.log("Se elimino un producto")
+            //console.log(products.products)
+            window.location.reload()
+        }catch(error){
+            console.log(error)
+        }
+    })
+
+    const addProduct = (id) =>{
+        sessionStorage.setItem("session","ok")
+        fetch("http://localhost:3000/api/carts/addToCart/product/"+id, {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json',
+            },
+        })
+        .then((response) => response.json())
+        .then((response) => {
+            try{
+                if (response.number > 200){
+                    console.log("error:", response)
+                    window.alert(JSON.stringify(response))
+                }
+                else
+                {
+                    console.log(response)
+                    console.log(response.number)
+                    console.log('Producto modificado');
+                    window.alert("Producto modificado !!!!!")
+                }
+            }catch(error)
+            {
+                console.log(error)
+            }
+    })
+
+    }
+
+    function addProd(x){
+
+        console.log("ejecuta acción: "  + x + " vacio" )
+        console.log(x)
+        alert(x)
+        fetch("http://localhost:3000/api/carts/addToCart/product/" + x, {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json',
+            },
+        })
+        .then((response) => response.json())
+        .then((response) => {
+            try{
+                if (response.number > 200){
+                    console.log("error:", response)
+                    window.alert(JSON.stringify(response))
+                }
+                else
+                {
+                    console.log(response)
+                    console.log(response.number)
+                    console.log('Product added');
+                    window.alert("Product added !!!!!")
+                    //window.location.reload()
+                }
+            }catch(error)
+            {
+                console.log(error)
+            }
+        })
+    }
+
+    function viewCartItems(req, res) {
+        sessionStorage.setItem("session", "ok");
+        window.location.href = "http://localhost:3000/views/cartItems";
+    }
+
+    function nextPage(existNextPage,nextPage) {
+        sessionStorage.setItem("session", "ok");
+        if(nextPage == ""){
+            nextPage = 1
+        }
+        window.location.href= `http://localhost:3000/views/products?page=` + nextPage
+       
+    }
+
+     function prevPage(existPrevPage,prevPage) {
+        sessionStorage.setItem("session", "ok");
+        if(prevPage == ""){
+            prevPage = 1
+        }
+        window.location.href=`http://localhost:3000/views/products?page=` + prevPage
+    }
+
+    function viewChat(req,res){
+        sessionStorage.setItem("session", "ok");
+        window.location.href = "http://localhost:3000/views/chat";
+
+    }
+   
+
+</script>    

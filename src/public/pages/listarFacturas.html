@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="shortcut icon" href="../img/flavicon-bazar5A.ico"> 
+    <title>Listado de Facturas</title>
+</head>
+<body onload="validarSeguridad('listarFacturas')">
+    <header>
+        <div id ="usuario" class="formato_header"></div>
+        <button id="id_listar_facturas" class = "btn btn-danger mb-5 mx-1" onclick="listarFacturas()">Mostrar Facturas</button>
+        <button id="id_listar_facturas_volver" class = "btn btn-danger mb-5 mx-1" onclick="btnFacturas_volver()">Volver</button>
+        <button id="id_listar_facturas_menu" class = "btn btn-danger mb-5 mx-1" onclick="btnMenu_volver()">Menu</button>
+    </header>
+    <main>
+        <div id="div_mostrar_facturas">
+            <!-- RENDER -->
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../js/bd.js"></script>
+    <script src="../js/funciones.js"></script>
+    <script src="../js/seguridad.js"></script>
+    <script src="../js/alertas.js"></script>
+    <script src="../js/listado.js"></script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+
+<button onclick="{{productsPaginate.productsPag.hasNextPage}} ? location.href='/views/productsCookies?page={{productsPaginate.productsPag.nextPage}}' : location.href='/views/productsCookies'">Pag.siguiente</button>
+<button onclick="{{productsPaginate.productsPag.hasPrevPage}} ? location.href='/views/productsCookies?page={{productsPaginate.productsPag.prevPage}}' : location.href='/views/productsCookies'">Pag.anterior</button>
+<button onclick="location.href='/users/logout'">LOGOUT</button>
+
+<!--<h2>¡¡¡¡¡¡Bienvendio {{productsPaginate.user}}!!!!!!!!!!</h2>-->
+<h2>¡¡¡¡¡¡Bienvendio {{productsPaginate.user}}!!!!!!!!!!</h2>
+<h3>Lista de productos ingresados:</h3>
+
+<p id="dataRender"></p>
+
+
+<div class = "container">
+    {{#each productsPaginate.productsPag.payload}}
+        <div class = "card">
+            <div class = "title">
+                <h3> TITLE: {{title}}</h3>
+                <h3> Cod.: {{id}} </h3>
+            </div>
+            <div class = "detalle">
+                <p>PRICE: {{price}} </p>
+                <p>ESTADO: {{status}} </p>
+                <p>CODIGO: {{code}} </p>
+                <p>STOCK:{{stock}} </p>
+                <p>CATEGORIA:{{category}}</p>
+                <p>DESCRIPTION: {{description}}</p>
+            </div>
+            <form method="post" action="http://localhost:3000/api/carts/640a9dd878ce406fba185192/products/{{id}}"">
+                <button class = "btnAddCart">Add to Cart</button>
+            </form>
+        </div>
+    {{/each}}
+</div>
+
+
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    const socketClient = io()
+    
+    const dataRenderProducts = document.getElementById('dataRednder')
+
+    socketClient.on("productoAgregado",(products)=>{
+        try{
+            console.log("Se Agregó un producto")
+            //console.log(products.products)
+            window.location.reload()
+        }catch(error){
+            console.log(error)
+        }
+    })
+
+    socketClient.on("productoEliminado",(products)=>{
+        try{
+            console.log("Se elimino un producto")
+            //console.log(products.products)
+            window.location.reload()
+        }catch(error){
+            console.log(error)
+        }
+    })
+      
+
+</script>    

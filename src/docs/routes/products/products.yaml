@@ -1,0 +1,308 @@
+paths:
+  /api/products/:
+    get:
+      summary: Get all products
+      tags:
+      - Products
+      responses:
+        200:
+          description: Success - Get all products in bd
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object 
+                  properties:
+                    id:
+                      type: string
+                      example: 'adc445djdjfgskfjgslfgffds'
+                    title:
+                      type: string
+                      example: "Mixer"
+                    description:
+                      type: string
+                      example: "Mixer 5 velocidades"
+                    code:
+                      type: string
+                      example: "ABT584"
+                    category:
+                      type: string
+                      example: "kitchen"
+                    status:
+                      type: boolean
+                      example: true
+                    thumbnail:
+                      type: array
+                      items:
+                        type: string
+                        example: './images/adc445d.jpeg'
+                    stock:
+                      type: number
+                      example: 120
+                    price:
+                      type: number
+                      example: 2500
+        400:
+          description: Bad request  
+  
+    post:
+        tags:
+        - Products
+        summary: Add a product
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object 
+                properties:
+                  title:
+                    type: string
+                    example: 'Mixer Maxis'
+                  description:
+                    type: string
+                    example: "Mixer multi-function Maxis brand"
+                  price:
+                    type: number
+                    example: 2530
+                  thumbnail:
+                    type: array
+                    example: ["./fdaa502.jpeg"]           
+                  code:
+                    type: string
+                    example: "AA5524"
+                  stock:
+                    type: number
+                    example: 200
+                  status:
+                    type: boolean
+                    example: true
+                  category:
+                    type: string
+                    example: "Home"
+        responses:
+          200:
+            description: Product modified
+          400:
+            description: Bad request
+          404:
+            description: Not Found
+
+  /api/products/paginate:
+    get:
+      summary: Get all products - paged view
+      tags:
+      - Products
+      parameters:
+        - in: query
+          name: limit
+          schema:
+            type: integer
+          description: The number of records to be displayed on the screen
+        - in: query
+          name: page
+          schema:
+            type: integer
+          description: The screen number to be displayed on the screen
+        - in: query
+          name: sort
+          schema:
+            type: integer
+          description: (value 1 / 0) if the result of the query is going to be ordered or not by the price field
+      responses:
+        200:
+          description: Success - Get all products in bd paged
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object 
+                  properties:
+                    id:
+                      type: string
+                      example: 'adc445djdjfgskfjgslfgffds'
+                    title:
+                      type: string
+                      example: "Mixer"
+                    description:
+                      type: string
+                      example: "Mixer 5 velocidades"
+                    code:
+                      type: string
+                      example: "ABT584"
+                    category:
+                      type: string
+                      example: "kitchen"
+                    status:
+                      type: boolean
+                      example: true
+                    thumbnail:
+                      type: array
+                      items:
+                        type: string
+                        example: './images/adc445d.jpeg'
+                    stock:
+                      type: number
+                      example: 120
+                    price:
+                      type: number
+                      example: 2500
+        400:
+          description: Bad request
+
+  /api/products/{idProduct}:
+    get:
+      summary: Get a product by id
+      tags:
+      - Products
+      parameters:
+          - name: idProduct
+            in: path
+      responses:
+        200:
+          description: Success - Get all products in bd
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object 
+                  properties:
+                    id:
+                      type: string
+                      example: 'adc445djdjfgskfjgslfgffds'
+                    title:
+                      type: string
+                      example: "Mixer"
+                    description:
+                      type: string
+                      example: "Mixer 5 velocidades"
+                    code:
+                      type: string
+                      example: "ABT584"
+                    category:
+                      type: string
+                      example: "kitchen"
+                    status:
+                      type: boolean
+                      example: true
+                    thumbnail:
+                      type: array
+                      items:
+                        type: string
+                        example: './images/adc445d.jpeg'
+                    stock:
+                      type: number
+                      example: 120
+                    price:
+                      type: number
+                      example: 2500
+        400:
+          description: Bad request  
+
+
+    put:
+      tags:
+      - Products
+      summary: Modify a product
+      parameters:
+        - name: idProduct
+          in: path
+          schema:
+            type: number
+          description: product id 
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object 
+              properties:
+                title:
+                  type: string
+                  example: 'Mixer Maxis'
+                description:
+                  type: string
+                  example: "Mixer multi-function Maxis brand"
+                price:
+                  type: number
+                  example: 2530
+                thumbnail:
+                  type: array
+                  example: ["./fdaa502.jpeg"]           
+                code:
+                  type: string
+                  example: "AA5524"
+                stock:
+                  type: number
+                  example: 200
+                status:
+                  type: boolean
+                  example: true
+                category:
+                  type: string
+                  example: "Home"
+      responses:
+        200:
+          description: Product modified
+        400:
+          description: Bad request
+        404:
+          description: Not Found
+    
+    delete:
+      tags:
+      - Products
+      summary: Delete a product
+      parameters:
+        - name: idProduct
+          in: path
+          description: product id 
+          required: true
+      responses:
+        200:
+          description: Product deleted
+        400:
+          description: Bad request
+        404:
+          description: Not Found
+     
+
+  components:
+    schemas:
+      Product:
+        type: object 
+        properties:
+          id:
+            type: string
+          title:
+            type: string
+          description:
+            type: string
+          code:
+            type: string
+          category:
+            type: string
+          status:
+            type: boolean
+          thumbnail:
+            type: array
+            items:
+              type: string
+          stock:
+            type: number
+          price:
+            type: number
+        example:
+          id: 'adc445djdjfgskfjgslfgffds'
+          title: "Mixer"
+          description: "Mixer 5 velocidades"
+          code: "ABT584"
+          category: "kitchen"
+          status: true
+          thumbnail: ['./images/adc445d.jpeg', './images/adc5505d.jpeg' ,'./images/adc5508.jpeg']
+          stock: 120
+          price: 2500

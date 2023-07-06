@@ -1,0 +1,28 @@
+apiVersion: apps/v1b
+kind: Deployment # Kubernetes resource kind we are creating
+metadata:
+  name: bazar5a-svc
+  labels:
+    app: bazar5a-svc
+spec:
+  replicas: 3  #Number of replicas that will be created for this deployment
+  selector:
+    matchLabels:
+      app: bazar5a-svc
+  template:
+    metadata:
+      labels:
+        app: bazar5a-svc
+    spec:
+      containers:
+      - name: bazar5a
+        image: abadano05/bazar5a # Image that will be used to containers in the cluster
+        resources:
+            limits:
+              memory: 512Mi
+              cpu: "1"
+        requests:
+            memory: 256Mi
+            cpu: "0.2"
+        ports:
+            - containerPort: 3000 # The port that the container is running on in the cluster

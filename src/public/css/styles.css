@@ -1,0 +1,27 @@
+h1{
+    color: red;
+    font-size: 3rem;
+    text-align: center;
+    padding: 2rem;
+}
+
+a.referencia{
+    color: black;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1rem;
+    text-decoration-style: bold;
+    text-align: center;
+}
+
+.formato{
+    padding: 1rem;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+}
+
+.login{
+    text-align:left;
+}

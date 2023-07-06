@@ -1,0 +1,21 @@
+<h1>LOGIN</h1>
+<form action='/users/login' method='post'>
+  Email: <input type='email' name='email' id='email' />
+  Password: <input type='password' name='password' id='password' />
+  <input type='submit' value='INGRESAR' />
+</form>
+
+<h2>REGISTRESE:</h2>
+<button onclick="location.href='/views/registro'">Ir a registro</button>
+
+<h2>RESET PASSWORD:</h2>
+<button onclick="location.href='/views/resetPassword'" method="post">Reset password</button>
+
+<h2>LOGIN / REGISTRO CON GITHUB:</h2>
+<button onclick="location.href='/users/registroGithub'">GITHUB</button>
+
+<h2>LOGIN / REGISTRO CON GOOGLE:</h2>
+<button onclick="location.href='/users/registroGoogle'">GOOGLE</button>
+
+<h2>LOGIN / REGISTRO CON DISCORD:</h2>
+<button onclick="location.href='/users/discord'">DISCORD</button>

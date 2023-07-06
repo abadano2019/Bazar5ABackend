@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"></meta>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"></link>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="shortcut icon" href="../img/flavicon-bazar5A.ico"> 
+    <title>Contacto</title>
+</head>
+
+
+<body onload="validarSeguridad('contacto')">
+    <header>
+
+    </header>
+    <main>
+        <h1 class="titulo-formulario-contacto">FORMULARIO DE CONTACTO</h1>
+        <div id="app" style="padding-top: 8rem;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-3 form-group">
+                        <label class="text-danger text-left">
+                            <h2>Nombre:</h2>
+                        </label>
+                        <input id= "name" class="form-control" type="text" v-model="from_name"></input>
+                    </div>
+                    <div class="col-sm-6 col-sm-offset-3 form-group">
+                        <label class="text-danger text-left">
+                            <h2>Asunto:</h2>
+                        </label>
+                        <input id="subject" class="form-control" type="text" v-model="subject"></input>
+                    </div>
+                    <div class="col-sm-6 col-sm-offset-3 form-group">
+                        <label class="text-danger text-left">
+                            <h2>Correo:</h2>
+                        </label>
+                        <input id="email" class="form-control" type="email" v-model="from_email"></input>
+                    </div>
+                    <div class="col-sm-6 col-sm-offset-3 form-group">
+                        <label class="text-danger">
+                            <h2>Mensaje:</h2>
+                        </label>
+                        <textarea id = "mensaje" class="form-control" v-model="message"></textarea>
+                    </div>
+                    <div class="col-sm-6 col-sm-offset-3 text-center">
+                        <button @click="enviar" class="btn btn-success" onclick="enviarMailPedido()">
+                            Enviar
+                        </button>
+                    </div>
+                
+                </div>
+            </div>
+            <div class="container">
+                <a class = "referencia" href="./shop.html">volver</a>
+            </div>
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js">
+    </script>
+    <script src="https://cdn.emailjs.com/dist/email.min.js" type="text/javascript">
+    </script>
+    <script>
+        (function () {
+            emailjs.init("-zQvYzy9vRabCeWgi");
+        })();
+        const vue = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    from_name: '',
+                    from_email: '',
+                    message: '',
+                    subject: '',
+                }
+            },
+            methods: {
+                enviar() {
+                    let data = {
+                        from_name: this.from_name,
+                        from_email: this.from_email,
+                        message: this.message,
+                        subject: this.subject,
+                    };
+
+                    emailjs.send("service_2zzoy7s", "template_d3qspir", data)
+                        .then(function (response) {
+                            if (response.text === 'OK') {
+                                alert('El correo se ha enviado de forma exitosa');
+                            }
+                            console.log("SUCCESS. status=%d, text=%s", response.status, response.text);
+                        }, function (err) {
+                            alert('Ocurrió un problema al enviar el correo');
+                            console.log("FAILED. error=", err);
+                        });
+                }
+            }
+        });
+    </script>
+    <script src = "../js/bd.js"></script>
+    <script src = "../js/seguridad.js"></script>
+    <script src = "../js/funciones.js"></script>
+    
+    
+</body>
+</html>

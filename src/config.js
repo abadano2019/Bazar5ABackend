@@ -1,0 +1,26 @@
+import dotenv from "dotenv";
+
+dotenv.config();
+
+export default {
+  PORT: process.env.PORT,
+  TEST_PORT: process.env.TEST_PORT,
+  MONGO_URI: process.env.MONGO_URI,
+  MONGO_TEST_URI: process.env.MONGO_TEST_URI,
+  CLIENT_ID_GITHUB: process.env.CLIENT_ID_GITHUB,
+  CLIENT_SECRET_GITHUB: process.env.CLIENT_SECRET_GITHUB, 
+  CLIENT_ID_GOOGLE: process.env.CLIENT_ID_GOOGLE,
+  CLIENT_SECRET_GOOGLE: process.env.CLIENT_SECRET_GOOGLE, 
+  CLIENT_ID_DISCORD: process.env.CLIENT_ID_DISCORD,
+  CLIENT_SECRET_DISCORD: process.env.CLIENT_SECRET_DISCORD,
+  FILE_REPOSITORY: process.env.FILE_REPOSITORY,
+  TWILIO_SID: process.env.TWILIO_SID,
+  TWILIO_AUTH_TOKEN: process.env.TWILIO_AUTH_TOKEN,
+  TWILIO_PHONE_NUMBER: process.env.TWILIO_PHONE_NUMBER,
+  GMAIL_PASSWORD: process.env.GMAIL_PASSWORD,
+  GMAIL_USER: process.env.GMAIL_USER,
+  COMPRESION: process.env.COMPRESION,
+  NODE_ENV: process.env.NODE_ENV,
+  STRIPE_FRONT_KEY: process.env.STRIPE_PUBLIC_KEY,
+  STRIPE_BACK_KEY: process.env.STRIPE_SECRET_KEY,
+};

@@ -1,0 +1,19 @@
+[
+    {"id": 1, "titulo": "Juego Menage", "img_src": "/img/Bazar1.jpg", "description": "Some quick example text to build on the card title and make up the bulk of the card's content.", "precio": 525 },
+    {"id": 2, "titulo": "Vasos plástico", "img_src": "../img/Bazar22.jpg", "description": "Some quick example text to build on the card title and make up the bulk of the card's content.", "precio": 50 },
+    {"id": 3, "titulo": "Fuente cerámica", "img_src": "../img/Bazar3.jpg", "description": "Some quick example text to build on the card title and make up the bulk of the card's content.", "precio": 790 },
+    {"id": 4, "titulo": "Juego de cubiertos", "img_src": "../img/Bazar4.jpg", "description": "Some quick example text to build on the card title and make up the bulk of the card's content.", "precio": 125 },
+    {"id": 5, "titulo": "Set cubiertos", "img_src": "../img/Bazar5.jpg", "description": "Some quick example text to build on the card title and make up the bulk of the card's content.", "precio": 2550 },
+    {"id": 6, "titulo": "Menage", "img_src": "../img/Bazar6.jpg", "description": "Some quick example text to build on the card title and make up the bulk of the card's content.", "precio": 99 },
+    {"id": 7, "titulo": "Juego de asaderas", "img_src": "../img/Bazar7.jpg", "description": "Some quick example text to build on the card title and make up the bulk of the card's content.", "precio": 425 },
+    {"id": 8, "titulo": "Fuente de vidrio", "img_src": "../img/Bazar8.jpg", "description": "Some quick example text to build on the card title and make up the bulk of the card's content.", "precio": 499 },
+    {"id": 9, "titulo": "Asadera con parrilla", "img_src": "../img/Bazar9.jpg", "description": "Some quick example text to build on the card title and make up the bulk of the card's content.", "precio": 750 },
+    {"id": 10, "titulo": "Budinera", "img_src": "../img/Bazar10.jpg", "description": "Some quick example text to build on the card title and make up the bulk of the card's content.", "precio": 259 },
+    {"id": 11, "titulo": "Exprimidor", "img_src": "../img/Bazar11.jpg", "description": "Some quick example text to build on the card title and make up the bulk of the card's content.", "precio": 120 },
+    {"id": 12, "titulo": "Exprimidor de palanca", "img_src": "../img/Bazar12.jpg", "description": "Some quick example text to build on the card title and make up the bulk of the card's content.", "precio": 2100 },
+    {"id": 13, "titulo": "Exprimidor con jarra", "img_src": "../img/Bazar13.jpg", "description": "Some quick example text to build on the card title and make up the bulk of the card's content.", "precio": 515 },
+    {"id": 14, "titulo": "Juguera", "img_src": "../img/Bazar14.jpg", "description": "Some quick example text to build on the card title and make up the bulk of the card's content.", "precio": 2730 },
+    {"id": 15, "titulo": "Cafetera", "img_src": "../img/Bazar15.jpg", "description": "Some quick example text to build on the card title and make up the bulk of the card's content.", "precio": 1357 },
+    {"id": 16, "titulo": "Cafetera Dolce Gusto", "img_src": "../img/Bazar16.jpg", "description": "Some quick example text to build on the card title and make up the bulk of the card's content.", "precio": 4299 }
+]
+                

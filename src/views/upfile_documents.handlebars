@@ -1,0 +1,105 @@
+ <form id="form" method="post" action"/upfile_documents" enctype="multipart/form-data">
+ Id Document upload:
+ <input type="file" name="foto" id="id_doc" onchange="process_id_doc(this)">
+ <br>
+ Address certificate upload:
+ <input type="file" name="foto" id="address" onchange="process_address(this)">
+ <br>
+ Edc certificate upload:
+ <input type="file" name="foto" id="edc" onchange="process_edc(this)">
+ <br>
+ <input id="button" type="submit" value="subir" disabled>
+ </form>
+ 
+ <button onclick="backToMenu()">Back to Menu</button>
+ <script>
+
+    const button = document.getElementById("button")
+    let id = false
+    let add = false
+    let edc = false
+
+    function process_id_doc(fileInput) {
+        const file = fileInput.files;
+        const flag = file[0].name
+        alert(`Archivo con el nombre: ${flag}`)
+        if (flag.substring(0,6) != "ID_DOC"){
+            alert("Nombre de archivo de Identificación deben empezar por ID_DOC /// Ejemplo ID_DOC - doc de identidad")
+            id = false
+        }
+        else
+        {
+            alert("archivo correcto")
+            id = true
+            
+        }
+
+        if(edc && add && id){
+            button.disabled = false
+        }
+        else{
+            button.disabled = true
+        }
+        
+        
+    }
+
+    function process_address(fileInput) {
+        const file = fileInput.files;
+        const flag = file[0].name
+        alert(`Archivo con el nombre: ${flag}`)
+        if (flag.substring(0,7) != "ADDRESS"){
+            alert("Nombre de archivo de comprobante de dirección deben empezar por ADDRESS /// Ejemplo ADDRESS - certificado domicilio")
+            add = false
+        }
+        else
+        {
+            alert("archivo correcto")
+            add = true
+            
+        }
+
+        if(edc && add && id){
+            button.disabled = false
+        }
+        else{
+            button.disabled = true
+        }
+    }
+
+    function process_edc(fileInput) {
+        const file = fileInput.files;
+        const flag = file[0].name
+        alert(`Archivo con el nombre: ${flag}`)
+        if (flag.substring(0,3) != "EDC"){
+            alert("Nombre de archivo de estado de cuenta deben empezar por EDC /// Ejemplo EDC - Estado de cuenta")
+            edc = false
+        }
+        else
+        {
+            alert("archivo correcto")
+            edc = true
+            sessionStorage.setItem("session", "ok")
+        }
+
+        if(edc && add && id){
+            button.disabled = false
+        }
+        else{
+            button.disabled = true
+        }
+    }
+
+    const form = document.getElementById('form')
+    const id_doc = document.getElementById('id_doc')
+    const address = document.getElementById('address')
+    const edc_ = document.getElementById('edc')
+    
+    function backToMenu()
+        {
+          sessionStorage.setItem("session","ok")
+          window.location.href = "http://localhost:3000/users/logout";
+        }
+ 
+
+ </script>

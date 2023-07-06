@@ -1,0 +1,254 @@
+* {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+body {
+  background: black;
+  padding-bottom: 50px;
+}
+h1 {
+  text-align: center;
+  font-size: 1.5rem;
+  color: black;
+}
+h3 {
+  text-align: center;
+  font-size: 1.5rem;
+  color: white;
+}
+.carrusel {
+  width: 100%;
+  text-align: center;
+}
+.textosContain {
+  width: 23%;
+  display: grid;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 3em;
+  padding-bottom: 3em;
+}
+button.boton {
+  width: 50px;
+  height: 50px;
+  background-color: #b9b9b9;
+  border-radius: 20px;
+  border: solid #fff 2px;
+}
+.boton .active {
+  background-color: #ef136f;
+}
+p {
+  font-size: 18px;
+  line-height: 30px;
+  color: #fff;
+}
+.title-boton {
+  color: #fff;
+}
+p.txt {
+  font-size: 18px;
+  line-height: 30px;
+  color: #fff;
+}
+#textoCarrusel {
+  font-size: 18px;
+  line-height: 30px;
+  color: #fff;
+}
+.botones {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 50px;
+}
+
+.formulario {
+  width: 100%;
+  text-align: center;
+}
+#formulario {
+  width: 100%;
+  /*display: grid;*/
+  display:flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  font-size: 25px;
+  justify-items: center;
+  justify-content: end;
+}
+div.formulario{
+  display:flex;
+  align-content: flex-start;
+}
+input {
+  margin: 10px 10px;
+  height: 25px;
+  border-radius: 50px;
+  width: 289px;
+  height: 49px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 9px 7px 11px 8px rgba(255, 255, 255, 0.42);
+  border-radius: 20px;
+}
+label {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: 61px;
+  color: #fff;
+}
+.form-button {
+  width: 327px;
+  height: 53px;
+  left: 950px;
+  top: 2586px;
+  border: none;
+  background: #ef136f;
+  box-shadow: 4px 7px 20px 5px rgba(255, 255, 255, 0.57);
+  border-radius: 20px;
+  margin-top: 15px;
+}
+
+.mensaje {
+  left: 950px;
+  top: 2586px;
+  border: none;
+  color: #fff;
+  box-shadow: 4px 7px 20px 5px rgba(255, 255, 255, 0.57);
+  border-radius: 20px;
+  margin-top: 15px;
+  width: 50%;
+  text-align: center;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+  font-size: 3em;
+  padding: 2px 2px;
+  background-color: cornflowerblue;
+}
+input {
+  padding-left: 10px;
+}
+
+#laFactura h3 {
+  display: grid;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+#total {
+  color: #fff;
+}
+
+.form2 {
+  color: #fff;
+  text-align: center;
+  margin: 9em;
+}
+.formato_header{
+  padding:3rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  margin-right: 30px;
+}
+
+.carrito{
+  display:flex;
+  flex-direction: column;
+  width:100%
+  
+}
+.nroCliente{
+  margin-left: 5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: flex-start;
+}
+
+.table__productos{
+  display: flex;
+  justify-content: center;
+}
+.table__productos > img{
+  width: 9rem;
+  object-fit: contain;
+  border-radius: 6px;
+  margin-right: 20px;
+}
+.table__cantidades > input{
+  width: 40px;
+  border:none;
+  outline: 0;
+  font-size: 16px;
+  font-weight: 700;
+  margin-right: 30px;
+  margin-bottom: 20px;
+}
+
+a.referencia{
+  color: blue;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 1.5rem;
+  text-decoration-style: bold;
+  text-align: center;
+}
+#usuario h3{
+  text-align: right;
+  font-size: 1rem;
+}
+div#div_nro_cliente_render{
+  display:flex;
+  flex-direction: row;
+  align-items: start;
+  text-align: left;
+  font-size: 4rem;
+  padding-left: 1rem;
+}
+div#div_nro_cliente_render label{
+ 
+  font-size: 1.5rem;
+  
+}
+
+.botones_config{
+  padding-top: 5rem;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#header-factura{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+p#cotizacion_dolar, p#cotizacion_euro, p#cotizacion_yen, p#cotizacion_libra{
+  margin: 0;
+  text-align: left;
+  padding: 0;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+#div_nro_factura_credito{
+  display:flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding-left: 1rem;
+}
+
+.titulo-formulario-contacto{
+  font-size: 3rem;
+  color: rgb(241, 146, 146);
+  padding-top: 10px;
+}

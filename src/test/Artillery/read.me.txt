@@ -1,0 +1,5 @@
+artillery quick --count 40 --num 50 "http://localhost:3000/views/login" -o ./src/test/Artillery/login.json
+
+artillery quick --count 40 --num 50 "http://localhost:3000/views/products" -o ./src/test/Artillery/products.json
+
+artillery quick --count 40 --num 50 "http://localhost:3000/" -o ./src/test/Artillery/menu.json

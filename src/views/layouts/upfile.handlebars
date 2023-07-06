@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{title}}</title>
+    <link rel='stylesheet' href='./stylesheets/style.css' />
+  </head>
+  <body onload=checkSession()>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"
+    ></script>
+    <script>
+        function request(req,res) 
+        { 
+            return $.ajax({ 
+                type: "GET", 
+                url:"http://localhost:3000/users/logout/", 
+                async: true 
+            }).responseText; 
+        }
+      
+        window.onbeforeunload = () => 
+        { 
+            let ok = sessionStorage.getItem("session")
+            if(!(ok === "ok")){ 
+                request(); 
+            } 
+                return null; 
+        }
+
+        function checkSession(req,res){
+            sessionStorage.removeItem("session")
+      
+        }
+
+        
+
+    </script>
+    {{{body}}}
+    
+  </body>
+</html>

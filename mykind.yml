@@ -1,0 +1,8 @@
+apiVersion: "stable.example.com/v1"
+kind: CustomResourceDefinition
+metadata:
+name: bazar5a
+spec:
+uri: "some uri"
+Command: "some command"
+image: abadano05/bazar5a

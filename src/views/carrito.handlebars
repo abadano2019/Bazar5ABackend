@@ -1,0 +1,254 @@
+
+<button onclick="location.href='/users/logout'">LOGOUT</button>
+<br/><br/>
+<!--<form method="post" action="http://localhost:3000/api/carts/purchase">
+    <button class = "btnPurchase">COMPRAR</button>
+</form>-->
+<button onclick= "cartPurchase()">Buy</button>
+
+<!--<button onclick = "location.href=`http://localhost:3000/checkout.html`">Pay whith Stripe</button>-->
+<button onclick = "payWithStripe()">Pay whith Stripe</button>
+
+<button onclick="backToMenu()">Back to Menu</button>
+
+<br/><br/>
+<br/><br/>
+
+<!--<button onclick="location.href=''">COMPRAR</button>-->
+
+<!--<h2>¡¡¡¡¡¡Bienvendio {{productsPaginate.user}}!!!!!!!!!!</h2>-->
+<h2>¡¡¡¡¡¡Bienvendio {{cartItems.email}}!!!!!!!!!!</h2>
+<h3>Cart Id: </h3>
+<h3 id="cartId">{{cartItems.cartId}}</h3>
+<h3>Lista de productos del carrito:</h3>
+
+<p id="dataRender"></p>
+
+
+<div class = "container">
+    {{#each cartItems.products}}
+        <div class = "card">
+            <div class = "title">
+                <h3 id="product_id">id: {{id}}</h3>
+                <h3> quantity: {{quantity}} </h3>
+            </div>
+            <button onclick="addProd(`{{id}}`)"> add product </button>
+            <button onclick="subtractProd(`{{id}}`)"> subtract product </button>
+            <button onclick="deleteProd(`{{id}}`,`{{cartItems.cartId}}`)"> delete product </button>
+        </div>
+    {{/each}}
+</div>
+
+
+
+<script src="/socket.io/socket.io.js"></script>
+
+<script>
+    const socketClient = io()
+    
+    const dataRenderProducts = document.getElementById('dataRednder')
+
+    socketClient.on("productoAgregado",(products)=>{
+        try{
+            console.log("Se Agregó un producto")
+            //console.log(products.products)
+            window.location.reload()
+        }catch(error){
+            console.log(error)
+        }
+    })
+
+    socketClient.on("productoEliminado",(products)=>{
+        try{
+            console.log("Se elimino un producto")
+            //console.log(products.products)
+            window.location.reload()
+        }catch(error){
+            console.log(error)
+        }
+    })
+  
+    
+    function addProd(x){
+
+        console.log("ejecuta acción: "  + x + " vacio" )
+        console.log(x)
+        alert(x)
+        fetch("http://localhost:3000/api/carts/addToCart/product/" + x, {
+            method: 'POST',
+           // headers: {
+           // 'Content-Type': 'application/json',
+           // },
+        })
+        .then((response) => response.json())
+        .then((response) => {
+            try{
+                if (response.number > 200){
+                    console.log("error:", response)
+                    window.alert(JSON.stringify(response))
+                }
+                else
+                {
+                    sessionStorage.setItem("session","ok")
+                    console.log(response)
+                    console.log(response.number)
+                    console.log('Product added');
+                    window.alert("Product added !!!!!")
+                    window.location.reload()
+                }
+            }catch(error)
+            {
+                console.log(error)
+            }
+        })
+    }
+
+    function subtractProd(x){
+
+        console.log("ejecuta acción: "  + x + " vacio" )
+        console.log(x)
+        alert(x)
+        fetch("http://localhost:3000/api/carts/subtractFromCart/product/" + x, {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json',
+            },
+        })
+        .then((response) => response.json())
+        .then((response) => {
+            try{
+                if (response.number > 200){
+                    console.log("error:", response)
+                    window.alert(JSON.stringify(response))
+                }
+                else
+                {
+                    sessionStorage.setItem("session","ok")
+                    console.log(response)
+                    console.log(response.number)
+                    window.alert("Product quantity updated !!!!!")
+                    window.location.reload() 
+                }
+            }catch(error)
+            {
+                console.log(error)
+            }
+        })
+        window.reload;
+    }
+
+    const cart_id = document.getElementById('cartId')
+    const cartIdValue = cart_id.textContent
+
+    function deleteProd(x){
+
+        console.log("ejecuta acción: "  + cart_id.textContent + " vacio" )
+        console.log(x)
+        alert(x)
+        fetch("http://localhost:3000/api/carts/" + cart_id.textContent + "/products/" + x, {
+            method: 'DELETE',
+            headers: {
+            'Content-Type': 'application/json',
+            },
+        })
+        .then((response) => response.json())
+        .then((response) => {
+            try{
+                if (response.number > 200){
+                    console.log("error:", response)
+                    window.alert(JSON.stringify(response))
+                }
+                else
+                {
+                    sessionStorage.setItem("session","ok")
+                    console.log(response)
+                    console.log(response.number)
+                    console.log('product deleted');
+                    window.alert("product deleted !!!!!")
+                    window.location.reload()
+                }
+            }catch(error)
+            {
+                console.log(error)
+            }
+        })
+    }
+
+    function backToMenu()
+        {
+          sessionStorage.setItem("session","ok")
+          window.location.href = "http://localhost:3000/views/products";
+        }
+
+
+    function payWithStripe2()
+        {
+          sessionStorage.setItem("session","ok")
+          window.location.href="http://localhost:3000/checkout.html";
+    }
+
+    function payWithStripe()
+        {
+          sessionStorage.setItem("session","ok")
+          //window.location.href="http://localhost:3000/view/checkout";
+            console.log("ejecutando requeste .....")
+            fetch("http://localhost:3000/views/checkout", {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json',
+                },
+        })
+        .then((response) => response.json())
+        .then((response) => {
+            console.log(response)
+            try{
+                if (response.number > 200){
+                    console.log("error:", response)
+                    window.alert(JSON.stringify(response))
+                }
+                else
+                {
+                    alert("ejecución de checkout")
+                    sessionStorage.setItem("session","ok")
+                    window.location.href=`http://localhost:3000/checkout.html`
+                }
+            }catch(error)
+            {
+                console.log(error)
+            }
+        })
+        }
+
+    function cartPurchase(){
+        sessionStorage.setItem("session","ok")
+        fetch("http://localhost:3000/api/carts/purchase", {
+            method: 'POST',
+           // headers: {
+           // 'Content-Type': 'application/json',
+           // },
+        })
+        .then((response) => response.json())
+        .then((response) => {
+            try{
+                if (response.number > 200){
+                    console.log("error:", response)
+                    window.alert(JSON.stringify(response))
+                }
+                else
+                {
+                    sessionStorage.setItem("session","ok")
+                    console.log(response)
+                    console.log(response.number)
+                    console.log('Ticket added, your order was placed');
+                    window.alert("Ticket added, your order was placed !!!!!")
+                    window.location.reload()
+                }
+            }catch(error)
+            {
+                console.log(error)
+            }
+        })
+    }
+  
+
+</script>    

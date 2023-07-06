@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Productos (Real Time)</title>
+</head>
+<header>
+</header>
+<body onload=checkSession()>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"
+    ></script>
+    <script>
+        function request(req,res) 
+        { 
+            return $.ajax({ 
+                type: "GET", 
+                url:"http://localhost:3000/users/logout/", 
+                async: true 
+            }).responseText; 
+        }
+      
+        window.onbeforeunload = () => 
+        { 
+            let ok = sessionStorage.getItem("session")
+            if(!(ok === "ok")){ 
+                request(); 
+            } 
+                return null; 
+        }
+
+        function checkSession(req,res){
+            sessionStorage.removeItem("session")
+        }
+
+    
+    </script>
+    <h1>Productos</h1>
+    {{{body}}}
+</body>
+<footer>
+</footer>
+
+</html>

@@ -1,0 +1,51 @@
+paths:
+  /users/login:
+    post:
+      summary: User login
+      tags:
+      - Users
+      responses:
+        "200":
+          descripcion: 'user login'
+          content:
+            application/json:
+              schemas:
+                type: Array 
+                items:
+                  $ref: '#/components/schemas/user'
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        age:
+          type: number
+        email:
+          type: string
+        password:
+          type: string
+        cart: 
+          type: mongoose.Schema.Types.ObjectId
+        role:
+          type: string
+        tokenResetPassword:
+          type: string
+      example:
+        id: jdjfk7dfadfdafdfdf
+        first_name: Jhon  
+        last_name: Doe
+        age: 30
+        email: jdoe@gmail.com
+        password: ab1234cd
+        cart: [[1,"2121313213",2],[2,"45646464654",3]]
+        role: admin
+        tokenResetPassword: dadfdfd464646s4d64d6f46dfs
+
+        

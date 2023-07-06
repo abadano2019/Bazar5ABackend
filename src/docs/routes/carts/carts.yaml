@@ -1,0 +1,329 @@
+paths:
+  /api/carts:
+    get:
+      summary: Get all carts
+      tags:
+      - Carts
+      responses:
+        200:
+          description: Success - Get all carts in bd
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object 
+                  properties:
+                    id:
+                      type: string
+                      example: 'adc445djdjfgskfjgslfgffds'
+                    cartProducts:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          idProduct:
+                            type: string
+                            example: 'adc445djdjfgskfjgsl445874'
+                          quantity:
+                            type: number
+                            example: 5
+        400:
+           description: Bad request              
+
+    post:
+      summary: Create a new cart
+      tags:
+        - Carts
+      responses:
+        201:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: 'adc445djdjfgskfjgslfgffds'
+                  cartProducts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        idProduct:
+                          type: string
+                          example: 'adc445djdjfgskfjgsl445874'
+                        quantity:
+                          type: number
+                          example: 5 
+        409:
+          description: Conflict
+        404:
+          description: Not Found
+
+
+  /api/carts/{idCart}:
+    get:
+      summary: Get a carts by Id
+      tags:
+      - Carts
+      parameters:
+        - name: idCart
+          in: path
+      responses:
+        200:
+          description: Success - Get a carts by id 
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object 
+                  properties:
+                    id:
+                      type: string
+                      example: 'adc445djdjfgskfjgslfgffds'
+                    cartProducts:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          idProduct:
+                            type: string
+                            example: 'adc445djdjfgskfjgsl445874'
+                          quantity:
+                            type: number
+                            example: 5
+        400:
+           description: Bad request              
+      
+    delete:
+      tags:
+      - Carts
+      summary: Delete a cart
+      parameters:
+        - name: cid
+          in: path
+          description: cart's id to be deleted
+          required: true
+      responses:
+        200:
+          description: Deleted
+        400:
+          description: Bad request
+        404:
+          description: Not Found
+
+
+    put:
+      tags:
+      - Carts
+      summary: Modify a cart
+      parameters:
+        - name: cid
+          in: path
+          description: cart's id to be modified
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object 
+                properties:
+                  id:
+                    type: string
+                    example: 'adc445djdjfgskfjgslfgffds'
+                  cartProducts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        idProduct:
+                          type: string
+                          example: 'adc445djdjfgskfjgsl445874'
+                        quantity:
+                          type: number
+                          example: 5
+      responses:
+        200:
+          description: Removed
+        400:
+          description: Bad request
+        404:
+          description: Not Found
+
+
+  /api/carts/addToCart/product/{pid}:
+    post:
+      summary: Add a product - redirect to endpoint /:cid/products/:pid
+      tags:
+        - Carts
+      parameters: 
+        - name: pid
+          in: path
+          description: product'id to be added to the cart
+      responses:
+        201:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: 'adaad4532jkjlja555d13adss'
+                  cartProducts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        idProduct:
+                          type: string
+                          example: 'dfe8483ojkjlja555d13adss'
+                        quantity:
+                          type: number
+                          example: 2 
+        409:
+          description: Conflict
+        404:
+          description: Not Found
+
+
+  /api/carts/{cid}/products/{pid}:
+    post:
+      summary: Add a product to a cart
+      tags:
+        - Carts
+      parameters:
+        - name: pid
+        - name: cid
+          in: path
+      responses:
+        201:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: 'adaad4532jkjlja555d13adss'
+                  cartProducts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        idProduct:
+                          type: string
+                          example: 'dfe8483ojkjlja555d13adss'
+                        quantity:
+                          type: number
+                          example: 2 
+        409:
+          description: Conflict
+        404:
+          description: Not Found
+
+    delete:
+      tags:
+      - Carts
+      summary: Remove a product from a cart
+      parameters:
+        - name: cid
+        - name: pid
+          in: path
+          description: remove a product from a cart
+          required: true
+      responses:
+        200:
+          description: Removed
+        400:
+          description: Bad request
+        404:
+          description: Not Found
+
+    put:
+      tags:
+      - Carts
+      summary: Modify the quantity of a product
+      parameters:
+        - name: cid
+        - name: pid
+          in: path
+          description: Modify the quantity of a product belonging to a certain cart
+          required: true
+      responses:
+        200:
+          description: Quantity modified
+        400:
+          description: Bad request
+        404:
+          description: Not Found
+  
+  /api/carts/purchase:
+    post:
+        summary: Make a purchase
+        tags:
+          - Carts
+        responses:
+          201:
+            description: Success
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: 'adc445djdjfgskfjgslfgffds'
+                    purchase_datetime:
+                      type: string
+                      example: "25/4/2023, 15:44:32"
+                    amount:
+                      type: number
+                      example: 2000
+                    purchaser:
+                      type: string
+                      example: jdoe@gmail.com
+                    products:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          idProduct:
+                            type: string
+                            example: 'adc445djdjfgskfjgsl445874'
+                          quantity:
+                            type: number
+                            example: 5 
+          409:
+            description: Conflict
+          404:
+            description: Not Found
+
+components:
+    schemas:
+      Cart:
+        type: object 
+        properties:
+          id:
+            type: string
+          cartProducts:
+            type: array
+            items:
+              type: object
+              properties:
+                idProduct:
+                  type: string
+                quantity:
+                  type: number
+        example:
+          id: 'adc445djdjfgskfjgslfgffds'
+          cartProducts: [{idProduct: 'adc445djdjfgskfjgsl445874', quantity: 5}, {idProduct: 'adc445djdjfgskfjgsl000228', quantity: 1}, {idProduct: 'adc445djdjfgskfjgsl000111', quantity: 2}]
+                

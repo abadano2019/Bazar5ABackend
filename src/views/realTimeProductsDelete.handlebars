@@ -1,0 +1,130 @@
+
+<h3>DELETE PRODUCT</h3>
+<form id="formulario" >
+    Id: <input type="id" name="nombre" id="id"><br/><br/>
+    Title: <input type="text" name="nombre" id="title"><br/><br/>
+    Description: <input type="text" name="descripcion" id="description"><br/><br/>
+    Price: <input type="number" name="price" id="price"><br/><br/>
+    Code: <input type= "text" name="code" id="code"><br/><br/>
+    Stock: <input type="number" name="stock" id="stock"><br/><br/>
+    Status: <input type="boolean" name="status" id="status"><br/><br/>
+    Category: <input type="text" name="category" id="category"><br/><br/>
+    <input type="submit" value="DELETE">
+</form>
+<br/><br/>
+
+<button onclick="backToMenu()">Back to Menu</button>
+<!--<button onclick="location.href='/views/realTimeProducts2'">ADD PRODUCT</button>-->
+<button onclick="addProduct()">ADD PRODUCT</button>
+<!--<button onclick="location.href='/views/realTimeProductsModify'">MODIFY PRODUCT</button>-->
+<button onclick="modifyProduct()">MODIFY PRODUCT</button>
+
+<p id="productoIngresado"></p>
+
+<h3>Lista de productos ingresados:</h3>
+
+{{#each products}}
+
+<p> ID: {{_id}} - TITLE: {{title}} - DESCRIPTION: {{description}} - PRICE: {{price}} - ESTADO: {{status}} - CODIGO: {{code}} - STOCK:{{stock}}</p>
+
+{{/each}}
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    const socketClient = io()
+    
+    socketClient.on("productoAgregado",(products)=>{
+        try{
+            console.log("Se Agregó un producto")
+            //console.log(products.products)
+            window.location.reload()
+        }catch(error){
+            console.log(error)
+        }
+    })
+
+    socketClient.on("productoEliminado",(products)=>{
+        try{
+            console.log("Se elimino un producto")
+            //console.log(products.products)
+            window.location.reload()
+        }catch(error){
+            console.log(error)
+        }
+    })
+
+    
+    const formulario = document.getElementById('formulario')
+    const inputId = document.getElementById('id')
+    const inputTitle = document.getElementById('title')
+    const inputDescription = document.getElementById('description')
+    const inputPrice = document.getElementById('price')
+    const inputCode = document.getElementById('code')
+    const inputStock = document.getElementById('stock')
+    const inputStatus = document.getElementById('status')
+    const inputCategory = document.getElementById('category')
+
+    formulario.onsubmit = (e)=>{
+        e.preventDefault()
+        const id = inputId.value
+        const title = inputTitle.value
+        const description = inputDescription.value
+        const price = inputPrice.value
+        const code = inputCode.value
+        const stock = inputStock.value
+        const status = inputStatus.value
+        const category = inputCategory.value
+        socketClient.emit('deleteProduct',{id, title, description, price, code,stock,status,category})
+        fetch('http://localhost:3000/api/products/'+id, {
+            method: 'DELETE',
+            body: JSON.stringify({
+                
+            }),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+        .then((response) => response.json())
+        .then((response) => {
+            try{
+                if (response.number > 200){
+                    sessionStorage.setItem("session","ok")
+                    console.log("error:", response)
+                    window.alert(JSON.stringify(response))
+                }
+                else
+                {
+                    sessionStorage.setItem("session","ok")
+                    console.log(response)
+                    console.log(response.number)
+                    console.log('Producto eliminado');
+                    window.alert("Producto eliminado!!!!!")
+                }
+            }catch(error)
+            {
+                console.log(error)
+            }
+        })
+    }
+
+    function backToMenu()
+        {
+          sessionStorage.setItem("session","ok")
+          window.location.href = "http://localhost:3000/views/menu";
+        }
+    
+    function modifyProduct()
+    {
+          sessionStorage.setItem("session","ok")
+          window.location.href = "http://localhost:3000/views/realTimeProductsModify";
+    }
+    
+    function addProduct()
+    {
+          sessionStorage.setItem("session","ok")
+          window.location.href = "http://localhost:3000/views/realTimeProducts2";
+    }
+    
+    
+
+</script>
