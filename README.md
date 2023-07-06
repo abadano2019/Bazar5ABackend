@@ -106,7 +106,7 @@ A continuación se marcan los pasos para poder utilizar la aplicación con datos
 
 1. Clonar o descargar el repositorio, antes de ejecutar este comando debe posicionarse en la carpeta donde desea clonar el repositorio
    ```sh
-   git clone (https://github.com/abadano2019/ArquitecturaBackend)
+   git clone (https://github.com/abadano2019/Bazar5ABackend)
    ```
 2. Instalar NPM packages
    ```sh
@@ -256,7 +256,7 @@ Esta es una primera versión del proyecto Bazar 5A Backend, en el cual queda par
 
 Proyecto desarrollado utilizando Express JS [Empezando con Express JS](https://expressjs.com/en/starter/installing.html).
 
-Proyecto Bazar 5A Backend  (https://github.com/abadano2019/ArquitecturaBackend)
+Proyecto Bazar 5A Backend  ([https://github.com/abadano2019/Bazar5ABackend](https://github.com/abadano2019/Bazar5ABackend))
 
 ## Comandos disponibles
 
@@ -297,4 +297,4 @@ https://devdocs.io/express/
 
 Ariel Badano - abadano05@gmail.com
 
-Project Link: (https://github.com/abadano2019/ArquitecturaBackend)https://github.com/abadano2019/ArquitecturaBackend
+Project Link: (https://github.com/abadano2019/Bazar5ABackend)https://github.com/abadano2019/Bazar5ABackend
